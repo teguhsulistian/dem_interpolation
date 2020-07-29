@@ -26,7 +26,7 @@ if [[ $test == 1 ]]; then
 	latf=`awk 'NR == 1 { max=$2 } { if ($2>max) max=$2;} END {print max}' ${input1}`
 	echo "bounding box $lon0 to $lonf and $lat0 to $latf"
 
-	gmt nearneighbor ${input1} -R$lon0/$lonf/$lat0/$latf -I${input3}/${input3} -Gdem.grd -S${input4}
+	gmt nearneighbor ${input1} -R$lon0/$lonf/$lat0/$latf -I${input3}/${input3} -V -Gdem.grd -S${input4}
 	gdal_translate -of "GTiff" dem.grd ${input2}
 	rm dem.grd
 
@@ -47,7 +47,7 @@ elif [[ $test == 2 ]]; then
 	latf=`awk 'NR == 1 { max=$2 } { if ($2>max) max=$2;} END {print max}' ${input1}`
 	echo "bounding box $lon0 to $lonf and $lat0 to $latf"
 
-	gmt surface ${input1} -R$lon0/$lonf/$lat0/$latf -I${input3}/${input3} -T${input4} -Gdem.grd
+	gmt surface ${input1} -R$lon0/$lonf/$lat0/$latf -I${input3}/${input3} -T${input4} -V -Gdem.grd
 	gdal_translate -of "GTiff" dem.grd ${input2}
 	rm dem.grd
 
@@ -66,7 +66,7 @@ elif [[ $test == 3 ]]; then
 	latf=`awk 'NR == 1 { max=$2 } { if ($2>max) max=$2;} END {print max}' ${input1}`
 	echo "bounding box $lon0 to $lonf and $lat0 to $latf"
 
-	gmt triangulate ${input1} -Gdem.grd -R$lon0/$lonf/$lat0/$latf -I${input3}/${input3}
+	gmt triangulate ${input1} -Gdem.grd -R$lon0/$lonf/$lat0/$latf -I${input3}/${input3} -V
 	gdal_translate -of "GTiff" dem.grd ${input2}
 	rm dem.grd
 
